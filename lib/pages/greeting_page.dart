@@ -1,14 +1,17 @@
-// lib/pages/greeting_page.dart
+// Import the necessary Flutter material package
 import 'package:flutter/material.dart';
 
+// Define a stateless widget for the GreetingPage
 class GreetingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // App bar with title and background color
       appBar: AppBar(
         title: Text('Assignment 3'),
         backgroundColor: Colors.blueAccent, // Changed to a more vibrant color
       ),
+      // Body of the scaffold
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -70,7 +73,7 @@ class GreetingPage extends StatelessWidget {
                           ),
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            'This is a Project which is Built in Flutter',
+                            'MDEV1005',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -108,19 +111,19 @@ class GreetingPage extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                'Student 1: Nikunj, ID: 01',
+                                'Student 1: Nikunj Thakor, ID: 200555644',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black),
                               ),
                               SizedBox(height: 5),
                               Text(
-                                'Student 2: Kirtan, ID: 02',
+                                'Student 2: Kirtan Patel, ID: 200587883',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black),
                               ),
                               SizedBox(height: 5),
                               Text(
-                                'Student 3: Yash, ID: 03',
+                                'Student 3: Yash Patel, ID: 200583719',
                                 style: TextStyle(
                                     fontSize: 18, color: Colors.black),
                               ),
@@ -140,6 +143,7 @@ class GreetingPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Calculator Button
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
@@ -156,6 +160,7 @@ class GreetingPage extends StatelessWidget {
                         height: 50,
                       ),
                     ),
+                    // API Button
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,
@@ -172,6 +177,7 @@ class GreetingPage extends StatelessWidget {
                         height: 50,
                       ),
                     ),
+                    // Notes Button
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent,

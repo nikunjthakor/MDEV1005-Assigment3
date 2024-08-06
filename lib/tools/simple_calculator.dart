@@ -1,30 +1,44 @@
-// lib/tools/simple_calculator.dart
+// Import the Flutter Material package
 import 'package:flutter/material.dart';
 
+// Define a StatefulWidget for the SimpleCalculator
 class SimpleCalculator extends StatefulWidget {
   @override
   _SimpleCalculatorState createState() => _SimpleCalculatorState();
 }
 
+// State class for the SimpleCalculator
 class _SimpleCalculatorState extends State<SimpleCalculator> {
+  // Display string on the calculator screen
   String _display = '0';
+
+  // Operator for the current operation
   String _operator = '';
+
+  // First number in the operation
   double _num1 = 0;
+
+  // Flag to determine if a new operation is starting
   bool _isNewOperation = true;
 
+  // Handle digit button presses
   void _onDigitPressed(String digit) {
     setState(() {
+      // If starting a new operation, replace the display with the new digit
       if (_isNewOperation) {
         _display = digit;
         _isNewOperation = false;
       } else {
+        // If not starting a new operation, append the digit to the display
         _display = _display == '0' ? digit : _display + digit;
       }
     });
   }
 
+  // Handle operator button presses
   void _onOperatorPressed(String operator) {
     setState(() {
+      // Save the current number and operator, and prepare for the next input
       if (!_isNewOperation) {
         _num1 = double.parse(_display);
         _operator = operator;
@@ -33,6 +47,7 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
     });
   }
 
+  // Perform the calculation based on the operator and update the display
   void _calculateResult() {
     setState(() {
       if (_operator.isNotEmpty) {
@@ -51,12 +66,14 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
             _display = num2 != 0 ? (_num1 / num2).toString() : 'Error';
             break;
         }
+        // Reset operator and indicate a new operation can start
         _operator = '';
         _isNewOperation = true;
       }
     });
   }
 
+  // Clear the calculator state
   void _clear() {
     setState(() {
       _display = '0';
@@ -66,27 +83,29 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
     });
   }
 
+  // Build a calculator button with specified text and color
   Widget _buildButton(String text, {Color color = Colors.blueGrey}) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: color,
-            padding: EdgeInsets.all(24),
+            backgroundColor: color, // Background color of the button
+            padding: EdgeInsets.all(24), // Padding inside the button
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16), // Rounded corners
             ),
           ),
           onPressed: () {
+            // Handle button presses based on the text
             if (text == '=') {
-              _calculateResult();
+              _calculateResult(); // Calculate the result if '=' is pressed
             } else if (text == 'C') {
-              _clear();
+              _clear(); // Clear the calculator if 'C' is pressed
             } else if (['+', '-', '*', '/'].contains(text)) {
-              _onOperatorPressed(text);
+              _onOperatorPressed(text); // Handle operator presses
             } else {
-              _onDigitPressed(text);
+              _onDigitPressed(text); // Handle digit presses
             }
           },
           child:
@@ -99,9 +118,10 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[900], // Background color of the calculator
       body: Column(
         children: [
+          // Display section at the top
           Expanded(
             flex: 1,
             child: Container(
@@ -110,12 +130,13 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
               child: Text(
                 _display,
                 style: TextStyle(
-                    fontSize: 48,
+                    fontSize: 48, // Font size of the display text
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
             ),
           ),
+          // Calculator buttons
           Expanded(
             flex: 2,
             child: Column(
